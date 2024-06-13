@@ -3,11 +3,11 @@ from bs4 import BeautifulSoup
 
 
 def billboard_200_scraper():
-    # URL for the Billboard 200 chart
-    URL = "https://www.billboard.com/charts/billboard-200/"
+    # url for the Billboard 200 chart
+    url = "https://www.billboard.com/charts/billboard-200/"
 
-    # Send a GET request to the URL
-    response = requests.get(URL)
+    # Send a GET request to the url
+    response = requests.get(url)
 
     # Check if the request was successful
     if response.status_code == 200:
@@ -30,8 +30,7 @@ def billboard_200_scraper():
                 albums.append({'album_title': title, 'artist': artist})
 
         # Print the results
-        for album in albums:
-            print(f"Title: {album['album_title']}, Artist: {album['artist']}")
+        return albums
     else:
         print("Failed to retrieve the webpage.")
 
