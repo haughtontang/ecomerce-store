@@ -16,13 +16,13 @@ def generate_dummy_data(output_path: Path):
     for idx, artist_dict in enumerate(album_data):
         latest_album = artist_dict["album_title"]
         artist = artist_dict["artist"]
-        total_sales = np.random.randint(10000, 1e9)
-        album_sales = np.random.randint(10000, 1e9)
-        streaming_followers = np.random.randint(10000, 1e6)
+        total_sales = np.random.randint(10000, int(1e9))
+        album_sales = np.random.randint(10000, int(1e9))
+        streaming_followers = np.random.randint(10000, int(1e6))
         latest_concert_revenue = np.random.random() * 1000000
-        latest_album_release_date = datetime(year=np.random.randint(2000, 2024),
+        latest_album_release_date = str(datetime(year=np.random.randint(2000, 2024),
                                              month=np.random.randint(1, 12),
-                                             day=np.random.randint(1, 30))
+                                             day=np.random.randint(1, 30)))
         number_of_songs = np.random.randint(1, 200)
         number_of_albums = np.random.randint(1, 10)
         output_list.append({"artist": artist, "billboard_rating": idx + 1, "latest_album": latest_album, "total_sales": total_sales, "album_sales": album_sales,
@@ -33,4 +33,4 @@ def generate_dummy_data(output_path: Path):
 
 
 if __name__ == '__main__':
-    generate_dummy_data(output_path=Path("~/Documents/PycharmProjects/ecommerce-store/data/dummy_billboard_artist_data.json"))
+    generate_dummy_data(output_path=Path("~/Documents/PycharmProjects/ecommerce-store/data/dummy_billboard_artist_data.json").expanduser())
