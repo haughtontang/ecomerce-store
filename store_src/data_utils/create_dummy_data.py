@@ -12,6 +12,11 @@ def write_json(output_path: Path, data):
         json.dump(data, json_file, indent=2)
 
 
+def load_json(data_path: Path):
+    with data_path.open("r") as file:
+        return json.load(file)
+
+
 def generate_random_key(length: int = 5) -> str:
     characters = string.ascii_letters + string.digits
     random_string = ''.join(random.choice(characters) for _ in range(length))
