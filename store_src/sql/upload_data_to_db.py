@@ -3,13 +3,14 @@ from pathlib import Path
 from store_src.data_utils.create_dummy_data import load_json
 
 
+def return_conn_and_cursor_obj_for_table(database_path: Path) -> (sqlite3.Connection, sqlite3.Cursor):
+    conn = sqlite3.connect(database_path.as_posix())
+    return conn, conn.cursor()
+
+
 def create_table_and_upload_data(table_name: str, database_path: Path, data_path: Path):
     data = load_json(data_path=data_path)
-    conn = sqlite3.connect(database_path.as_posix())
-
-    # Create a cursor object
-    cur = conn.cursor()
-
+    conn, cur = return_conn_and_cursor_obj_for_table(database_path=database_path)
     # Create the artists table
     cur.execute(f'''
         CREATE TABLE IF NOT EXISTS {table_name} (
